@@ -4,17 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.UUID.randomUUID;
+
 public class Utils {
-    public static <String> DataTransferObject[] generateDataChain(int dataSize) {
-        List<DataTransferObject> res =
-                IntStream.
-                        range(0, dataSize).
-                        mapToObj(i -> new DataTransferObject<java.lang.String>(i, generateDataChain())).
-                        collect(Collectors.toList());
-        return res.toArray(new DataTransferObject[dataSize]);
+    public static List<DataTransferObject<String>> generateDataChain(int dataSize) {
+        return IntStream.range(1, dataSize + 1).mapToObj(Utils::generateDataItem).toList();
     }
 
-    private static String generateDataChain() {
-        return "Your data could be here";
+    private static DataTransferObject<String> generateDataItem(int idx) {
+        return new DataTransferObject<String>(idx, randomUUID().toString());
     }
 }

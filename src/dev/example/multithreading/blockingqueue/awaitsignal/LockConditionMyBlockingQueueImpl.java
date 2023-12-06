@@ -10,8 +10,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static java.lang.Thread.currentThread;
 
-public class LockConditionMyBlockingQueueImpl implements MyBlockingQueue<DataTransferObject> {
-    private final LinkedList<DataTransferObject> data;
+public class LockConditionMyBlockingQueueImpl<T> implements MyBlockingQueue<DataTransferObject<T>> {
+    private final LinkedList<DataTransferObject<T>> data;
     private final int capacity;
     private final Lock lock;
     private final Condition queueEmptyCondition;
@@ -27,7 +27,7 @@ public class LockConditionMyBlockingQueueImpl implements MyBlockingQueue<DataTra
     }
 
     @Override
-    public void put(final DataTransferObject data) {
+    public void put(final DataTransferObject<T> data) {
         lock.lock();
         try {
             while (this.data.size() == this.capacity) {
@@ -43,7 +43,7 @@ public class LockConditionMyBlockingQueueImpl implements MyBlockingQueue<DataTra
     }
 
     @Override
-    public DataTransferObject take() {
+    public DataTransferObject<T> take() {
         lock.lock();
         try {
             while (this.data.isEmpty()) {

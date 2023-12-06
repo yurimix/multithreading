@@ -7,9 +7,9 @@ import java.util.LinkedList;
 
 import static java.lang.Thread.currentThread;
 
-public class WaitNotifyMyBlockingQueueImpl implements MyBlockingQueue<DataTransferObject> {
+public class WaitNotifyMyBlockingQueueImpl<T> implements MyBlockingQueue<DataTransferObject<T>> {
 
-    private final LinkedList<DataTransferObject> data;
+    private final LinkedList<DataTransferObject<T>> data;
 
     private final int capacity;
 
@@ -18,7 +18,7 @@ public class WaitNotifyMyBlockingQueueImpl implements MyBlockingQueue<DataTransf
         this.capacity = capacity;
     }
 
-    public synchronized void put(final DataTransferObject data) {
+    public synchronized void put(final DataTransferObject<T> data) {
         try {
             while (this.data.size() == this.capacity) {
                 wait();
@@ -30,7 +30,7 @@ public class WaitNotifyMyBlockingQueueImpl implements MyBlockingQueue<DataTransf
         }
     }
 
-    public synchronized DataTransferObject take() {
+    public synchronized DataTransferObject<T> take() {
         try {
             while (this.data.isEmpty()) {
                 wait();

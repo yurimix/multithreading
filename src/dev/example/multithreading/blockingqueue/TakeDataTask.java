@@ -2,17 +2,17 @@ package dev.example.multithreading.blockingqueue;
 
 import static java.lang.System.out;
 import static java.lang.Thread.currentThread;
-import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-public class TakeDataTask implements Runnable {
+public class TakeDataTask<T> implements Runnable {
 
-    private final MyBlockingQueue queue;
+    private final MyBlockingQueue<DataTransferObject<T>> queue;
 
-    private final int delayInSeconds;
+    private final int delayInMs;
 
-    public TakeDataTask(MyBlockingQueue queue, int delayInSeconds) {
+    public TakeDataTask(MyBlockingQueue<DataTransferObject<T>>queue, int delayInMs) {
         this.queue = queue;
-        this.delayInSeconds = delayInSeconds;
+        this.delayInMs = delayInMs;
     }
 
     @Override
@@ -22,14 +22,16 @@ public class TakeDataTask implements Runnable {
             while (!currentThread().isInterrupted()) {
                 var dto = queue.take();
                 out.println("The object was taken from the queue: " + dto + ", queue size: " + queue.size());
-                SECONDS.sleep(delayInSeconds);
+                MILLISECONDS.sleep(delayInMs);
             }
         } catch (InterruptedException ex) {
             currentThread().interrupt();
         } catch (Exception ex) {
-            out.println("Something was wrong:" + ex);
+            if (!currentThread().isInterrupted()) {
+                out.println("Take data task: something was wrong:" + ex);
+            }
         }
-        out.println("Take data task stopped.");
+        out.println("Take data task finished.");
     }
 }
 
