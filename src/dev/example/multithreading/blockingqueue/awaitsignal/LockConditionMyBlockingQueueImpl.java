@@ -1,14 +1,14 @@
 package dev.example.multithreading.blockingqueue.awaitsignal;
 
-import dev.example.multithreading.blockingqueue.DataTransferObject;
-import dev.example.multithreading.blockingqueue.MyBlockingQueue;
+import static java.lang.Thread.currentThread;
 
 import java.util.LinkedList;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static java.lang.Thread.currentThread;
+import dev.example.multithreading.blockingqueue.DataTransferObject;
+import dev.example.multithreading.blockingqueue.MyBlockingQueue;
 
 public class LockConditionMyBlockingQueueImpl<T> implements MyBlockingQueue<DataTransferObject<T>> {
     private final LinkedList<DataTransferObject<T>> data;

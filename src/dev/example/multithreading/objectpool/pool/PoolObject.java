@@ -1,6 +1,6 @@
 package dev.example.multithreading.objectpool.pool;
 
-public class PoolObject <T> {
+public class PoolObject<T> {
 
     private final T data;
     private boolean issued;

@@ -1,11 +1,11 @@
 package dev.example.multithreading.blockingqueue.waitnotify;
 
-import dev.example.multithreading.blockingqueue.DataTransferObject;
-import dev.example.multithreading.blockingqueue.MyBlockingQueue;
+import static java.lang.Thread.currentThread;
 
 import java.util.LinkedList;
 
-import static java.lang.Thread.currentThread;
+import dev.example.multithreading.blockingqueue.DataTransferObject;
+import dev.example.multithreading.blockingqueue.MyBlockingQueue;
 
 public class WaitNotifyMyBlockingQueueImpl<T> implements MyBlockingQueue<DataTransferObject<T>> {
 

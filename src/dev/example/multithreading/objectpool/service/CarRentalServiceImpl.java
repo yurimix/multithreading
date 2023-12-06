@@ -1,10 +1,9 @@
 package dev.example.multithreading.objectpool.service;
 
-import dev.example.multithreading.objectpool.model.Car;
-import dev.example.multithreading.objectpool.model.CarType;
-import dev.example.multithreading.objectpool.pool.CarPool;
-
 import static java.lang.System.out;
+
+import dev.example.multithreading.objectpool.model.Car;
+import dev.example.multithreading.objectpool.pool.CarPool;
 
 public class CarRentalServiceImpl implements CarRentalService {
 
@@ -16,18 +15,18 @@ public class CarRentalServiceImpl implements CarRentalService {
 
     @Override
     public Car rentCar() {
-        out.println("Client want to rent a car...");
+        out.println("The client wants to rent a car...");
         var car = carPool.takeCar();
-        out.println("Car " + car + " was rented");
+        out.println("The car " + car + " was rented");
         return car;
     }
 
     @Override
     public void returnCar(Car car) {
         car.setDirty(true);
-        out.println("Client want to return car " + car);
+        out.println("The client wants to return the car " + car);
         carPool.returnCar(car);
-        out.println("Car " + car.getVin() + " was returned");
+        out.println("The car " + car.getVin() + " was returned");
     }
 
     public void printStatistics() {

@@ -1,13 +1,12 @@
 package dev.example.multithreading.objectpool.client;
 
-import dev.example.multithreading.objectpool.service.CarRentalService;
+import static java.lang.Thread.currentThread;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.currentThread;
-import static java.util.concurrent.TimeUnit.SECONDS;
+import dev.example.multithreading.objectpool.service.CarRentalService;
 
 public class CarRentalServiceClient implements Callable<Integer> {
 

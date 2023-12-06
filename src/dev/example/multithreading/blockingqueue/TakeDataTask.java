@@ -10,7 +10,7 @@ public class TakeDataTask<T> implements Runnable {
 
     private final int delayInMs;
 
-    public TakeDataTask(MyBlockingQueue<DataTransferObject<T>>queue, int delayInMs) {
+    public TakeDataTask(MyBlockingQueue<DataTransferObject<T>> queue, int delayInMs) {
         this.queue = queue;
         this.delayInMs = delayInMs;
     }
@@ -34,5 +34,3 @@ public class TakeDataTask<T> implements Runnable {
         out.println("Take data task finished.");
     }
 }
-
-

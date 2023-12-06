@@ -1,13 +1,12 @@
 package dev.example.multithreading.objectpool;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Stream;
+
 import dev.example.multithreading.objectpool.client.CarRentalServiceClient;
 import dev.example.multithreading.objectpool.service.CarRentalService;
 import dev.example.multithreading.objectpool.service.CarRentalServiceImpl;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ObjectPoolTest {
 
@@ -18,12 +17,9 @@ public class ObjectPoolTest {
         service = new CarRentalServiceImpl();
         final int clientsNum = 100;
 
-        var clients = Stream.
-            generate(ObjectPoolTest::createCarRentalServiceClient).
-            limit(clientsNum).
-            collect(Collectors.toList());
+        var clients = Stream.generate(ObjectPoolTest::createCarRentalServiceClient).limit(clientsNum).toList();
 
-        try(ExecutorService executorService = Executors.newFixedThreadPool(clientsNum)) {
+        try (ExecutorService executorService = Executors.newFixedThreadPool(clientsNum)) {
             executorService.invokeAll(clients);
             executorService.shutdown();
         }

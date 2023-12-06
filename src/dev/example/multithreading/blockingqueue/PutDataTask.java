@@ -24,7 +24,7 @@ public class PutDataTask<T> implements Runnable {
         out.println("Put data task started.");
         try {
             out.printf("Putting %d data objects into the queue\n", dataObjects.size());
-            for (final DataTransferObject<T>dto : dataObjects) {
+            for (final DataTransferObject<T> dto : dataObjects) {
                 if (!currentThread().isInterrupted()) {
                     queue.put(dto);
                     out.println("Transfer object was queued: " + dto + ", queue size: " + queue.size());
@@ -33,7 +33,7 @@ public class PutDataTask<T> implements Runnable {
             }
             out.println("Put data task finished.");
         } catch (InterruptedException e) {
-            out.println("Put data task interrupted: " + e );
+            out.println("Put data task interrupted: " + e);
             currentThread().interrupt();
         }
     }

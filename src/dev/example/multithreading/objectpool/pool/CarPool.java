@@ -1,8 +1,8 @@
 package dev.example.multithreading.objectpool.pool;
 
-import dev.example.multithreading.objectpool.model.Car;
-
 import static dev.example.multithreading.objectpool.pool.CarPoolGenerator.init;
+
+import dev.example.multithreading.objectpool.model.Car;
 
 public class CarPool extends AbstractPool<Car> {
 

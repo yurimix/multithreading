@@ -21,8 +21,11 @@ public class MyBlockingQueueTest {
         test(new LockConditionMyBlockingQueueImpl<String>(DATA_QUEUE_CAPACITY), "LockConditionBlockingQueue");
     }
 
-    private static void test(MyBlockingQueue<DataTransferObject<String>> blockingQueue, String queueName) throws InterruptedException {
+    private static void test(MyBlockingQueue<DataTransferObject<String>> blockingQueue, String queueName)
+    throws InterruptedException {
+
         out.println(queueName + " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
         // data
         var dataChain = generateDataChain(PUT_DATA_CHAIN_SIZE);
 
@@ -40,11 +43,12 @@ public class MyBlockingQueueTest {
 
         // final action
         putDataThread.join();
-        while(blockingQueue.size() > 0) {
+        while (blockingQueue.size() > 0) {
             TimeUnit.SECONDS.sleep(1);
         }
         takeDataThread.interrupt();
         takeDataThread.join();
+
         out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< " + queueName);
     }
 

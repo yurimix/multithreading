@@ -1,10 +1,9 @@
 package dev.example.multithreading.blockingqueue;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import static java.util.UUID.randomUUID;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class Utils {
     public static List<DataTransferObject<String>> generateDataChain(int dataSize) {

@@ -1,4 +1,4 @@
 package dev.example.multithreading.blockingqueue;
 
-public record DataTransferObject<T>(int index, T data){};
-
+public record DataTransferObject<T>(int index, T data) {
+};

@@ -1,9 +1,9 @@
 package dev.example.multithreading.objectpool.model;
 
+import static java.util.UUID.randomUUID;
+
 import java.util.Objects;
 import java.util.UUID;
-
-import static java.util.UUID.randomUUID;
 
 public class Car {
 
@@ -62,12 +62,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car {" + "VIN: " + vin +
-            ", type: " + carType +
-            ", brand: " + carBrand +
-            ", dirty: " + dirty +
-            ", rentNum: " + rentNum +
-            '}';
+        return "Car {" + "VIN: " + vin + ", type: " + carType + ", brand: " + carBrand + ", dirty: " + dirty
+                + ", rentNum: " + rentNum + '}';
     }
 }
-
